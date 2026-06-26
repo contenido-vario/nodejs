@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/rt.ico" type="image/x-icon">
+  <title>node.js</title>
+  
+  <!-- Los <link> de las fuentes se colocan en el HTML dado que es la forma más rápida de carga cuando se usa el CDN. -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    /* layer base: estilos globales y "reseteo" de etiquetas HTML puras */
+    /* Permite definir cómo se ve la web "por defecto" antes de empezar a poner clases. */
+
+    @layer base {
+      /* Agregar estilo de párrafo para todo el documento */
+      body { @apply text-sm }
+      p { @apply mb-1 leading-relaxed text-gray-700; }
+      a { @apply text-blue-600 underline }
+      menu { @apply ml-4 mb-4 text-sm}
+
+      /* Estilos de los títulos */
+      h1, h2 { @apply font-serif font-bold text-white mb-6; }
+      h3 { @apply text-cyan-600 text-lg mb-2}
+      
+      summary {@apply font-semibold mb-1}
+      h4 {margin-left: -6px; @apply font-bold my-2; }
+      h4 > a {@apply underline-offset-3}
+      article {
+        @apply p-4 border border-cyan-600 rounded-lg hover:shadow-md transition text-base bg-white;
+      }
+      ul {@apply list-['☆'] list-outside ms-6 space-y-1 mb-3 marker:text-cyan-600}
+      ul li {@apply ps-2 mb-1 text-sm}
+    }
+
+    @layer components {
+      .btn-principal {
+        @apply px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-500 transition;
+      }
+
+      /* Viñeta para juegos */
+      li.juegos::before {
+        content: url('./icons/toys.svg');
+        font-size: 0.8rem;
+        margin-right: 8px;
+      }
+
+      img {@apply inline mr-1;}
+    }
+
+
+  </style>
+
+</head>
+
+<body class="bg-taupe-100 leading-normal tracking-normal">
+
+  <header class="bg-cyan-600 backdrop-blur-md shadow-sm px-4 py-2 sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold mt-2">
+        <img class="inline" width="64px" src="./img/nodejs.png" alt="logo" title="logo"> Node.js</h1>
+      <nav class="space-x-4 text-sm md:text-base xl:text-sm xl:space-x-2">
+        <a title="nodejs.org" href="https://nodejs.org/es" target="_blank" rel="noopener">
+          <img width="50px" src="./img/nodejs.svg" alt="https://nodejs.org/es">
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
+    <section class="text-lg">
+      <!-- <span></span> -->
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-base">
+
+        <article>
+          <h3>1. Instalación de Node</h3>
+            <ul>
+              <li><a target="_blank" href="instalacion.html">Instalar y configurar el entorno de desarrollo con Node.js</a></li>
+            </ul>          
+          </article>
+          
+          <article>
+            <h3>2. Node.js en<br>FrontEnd vs.BackEnd</h3>
+            <details><summary>Material de consulta</summary>
+            <ul>
+              <li><a target="_blank" href="#">Node.js en el desarrollo FrontEnd.</a></li>
+              <li><a target="_blank" href="#">Node.js en el desarrollo BackEnd.</a></li>
+            </ul>
+          </details>
+          <details open><summary>Ejercicios</summary>          
+          </details>
+        </article>        
+
+        <article>
+          <h3>3. La Filosofía de Node.js</h3>
+          <details><summary>Material de consulta</summary>
+            <p class="text-sm">¿Por qué Node es diferente a todo lo demás?</p>
+            <ul>
+              <li>Introducción al entorno: Qué es V8, C++ y el rol de libuv.</li>          
+              <li>El Event Loop a fondo</li>
+              <li>Patrón Asíncrono No Bloqueante</li>
+              <li>Módulos en Node.</li>
+            </ul>
+          </details>
+          <details><summary>Ejercicios</summary>
+            <ul>
+            </ul>              
+          </details>
+        </article>
+
+        <article>
+          <h3>4. Herramientas Nativas de Node.js</h3>
+          <details><summary>Material de consulta</summary>
+            <ul>
+              <li>Sistema de Archivos</li>          
+              <li>Manejo de rutas y variables de entorno</li>
+              <li>Event Emitters</li>
+              <li>Streams y Buffers</li>
+            </ul>
+          </details>
+          <details><summary>Ejercicios</summary>
+            <ul>
+            </ul>              
+          </details>
+        </article>
+
+        <article>
+          <h3>5. El Estándar Web con Express.js</h3>
+          <details><summary>Material de consulta</summary>
+            <ul>
+              <li>Construir una API Rest</li>          
+              <li>Middleware Pattern</li>
+              <li>Manejo Global de Errores</li>
+              <li>Validación de Datos</li>
+            </ul>
+          </details>
+          <details><summary>Ejercicios</summary>
+            <ul>
+            </ul>              
+          </details>
+        </article>
+
+        <article>
+          <h3>6. Seguridad y Autenticación</h3>
+          <details><summary>Material de consulta</summary>
+            <ul>
+              <li>Hasheo de contraseñas</li>          
+              <li>Autenticación con JWT</li>
+              <li>Seguridad HTTP</li>
+            </ul>
+          </details>
+          <details><summary>Ejercicios</summary>
+            <ul>
+            </ul>              
+          </details>
+        </article>        
+
+        <article>
+          <h3>7. WebSockets</h3>
+          <details><summary>Material de consulta</summary>
+            <ul>
+              <li>Chats y notificaciones</li>          
+            </ul>
+          </details>
+          <details><summary>Ejercicios</summary>
+            <ul>
+            </ul>              
+          </details>
+        </article>
+
+        <article>
+          <h3>8. Testing</h3>
+          <details><summary>Material de consulta</summary>
+            <ul>
+              <li>Tests Unitarios con Jest</li>          
+              <li>Tests de Integración (E2E) con supertest</li>          
+            </ul>
+          </details>
+          <details><summary>Ejercicios</summary>
+            <ul>
+            </ul>              
+          </details>
+        </article> 
+        
+        <article>
+          <h3>9. <b>Despliegue</b></h3>
+          <details><summary>Material de consulta</summary>
+            <ul>
+              <li>Subir la app a plataformas como Render, Railway</li>          
+              <li>Subir la app a un servidor propio</li>          
+            </ul>
+          </details>
+          <details><summary>Ejercicios</summary>
+            <ul>
+            </ul>              
+          </details>
+        </article> 
+
+        <article class="border-green-500 bg-green-50">
+          <h3 class="text-green-500">10. Base de Datos MongoDB</h3>
+          <p class="text-sm">Pausa para MongoDB</p>
+          <details><summary>Material de consulta</summary>
+            <ul>
+              <li>Consumo de BBDD</li>     
+            </ul>
+          </details>
+          <details><summary>Ejercicios</summary>
+            <ul>
+            </ul>              
+          </details>
+        </article> 
+
+        <article class="border-green-500 bg-green-50">
+          <h3 class="text-green-500">11. Base de Datos PostGres</h3>
+          <p class="text-sm">Pausa para PostGres</p>
+          <details><summary>Material de consulta</summary>
+            <ul>
+              <li>Consumo de BBDD</li>     
+            </ul>
+          </details>
+          <details><summary>Ejercicios</summary>
+            <ul>
+            </ul>              
+          </details>
+        </article> 
+
+      </main>
+
+  <footer class="mt-20 py-8 bg-gray-800 text-white text-center">
+    <li class="text-white">&copy; 2026&copy; Material JavaScript - Volver a <a href="https://contenido-vario.github.io/materiales/" target="_blank" rel="noopener"><b class="text-cyan-100 underline underline-offset-4">Materiales del Curso</b></a></li>
+  </footer>
+
+  
+
+</body>
+
+</html>
