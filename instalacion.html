@@ -179,12 +179,13 @@
         </li>
         <li> <!--4-->
           <p>Ve hasta el final de ese archivo de texto que se abrió, pega esta línea en una nueva línea después del <code>@echo off</code>:<br>
-          <code>@FOR /F "tokens=*" %%z IN ('fnm env --use-on-cd') DO @%%z</code></p>
+          <code>@fnm env --use-on-cd --shell cmd | call</code></p>
         </li>
         <li> <!--5-->
           <p>Guarda el archivo (<code>Ctrl G</code> o selecciona <b>Archivo > Guardar</b>), cierra el bloc de notas y cierra <b>Cmder</b>.</p>
         </li>
       </ol>
+      <p>En <b>macOS/Linux</b> fnm se instala de forma nativa con un solo comando de <code>curl</code> (disponible en su web oficial), y puedes saltar el paso de <b>Cmder</b></p>
     </details>
 
     <details id="4"> <!-- Instalar la última version LTS de Node-->
@@ -253,7 +254,7 @@
 
   <section>
     <h2>Configurar un Nuevo Proyecto en Node.js</h2>
-    
+
     <div class="text-sm">
     <p>Los siguientes pasos: inicializar proyecto con <code>pnpm init</code>, configurar el <b>package.json</b> e instalar el framework web, que en nuestro caso será <b>Express</b>, pertenecen al ámbito de un proyecto.</p>
     <p>📌<b>Esto significa que deberás repetirlos cada vez que crees un proyecto nuevo desde cero para definir cómo será su entorno.</b></p>
@@ -265,15 +266,25 @@
         <p class="mt-4">Para iniciar un proyecto de <b>Node.js</b>, se debe escribir el siguiente comando en la terminal de VS Code:</p>
         <p><code>pnpm init</code></p>
 
-        <p>Esto creará un archivo denominado <b>package.json</b>, el cual es el "cerebro" de tu configuración y que debemos adaptar. Abre ese archivo y realiza los siguientes ajustes:</p>
+        <p>Esto creará un archivo denominado package.json, el cual es el "cerebro" de tu configuración. Antes de modificarlo, prepararemos el entorno siguiendo estas buenas prácticas:</p>
 
-        <h4>7.1. Configurar el uso de módulos (ES Modules)</h4>
+        <h4>1.1. Crear un archivo <code>.gitignore</code></h4>
 
-        <p>Añade la propiedad <code>"type": "module"</code> dentro del objeto principal de tu package.json (<span class="underline">en caso de que no se encuentre</span>). Esto te permitirá usar la sintaxis moderna de JavaScript (<code>import/export</code>) en lugar del antiguo <code>require</code>.</p>
+        <p>Las dependencias que se guardan en la carpeta <b>node_modules/</b> pueden ser inmensas (miles de archivos). No tiene sentido subirlas a <b>GitHub</b>. Es suficiente con subir el <b>package.json</b>, ya que cualquier otra persona que se descargue el proyecto solo tendrá que ejecutar <code>pnpm install</code> en la terminal, para recuperar automáticamente todos los paquetes necesarios.</p>
 
-        <h4>7.2 Configurar el script de desarrollo (Arranque automático)</h4>
+        <p>Para crear este archivo de forma automática e indicarle a Git que ignore esa carpeta, ejecuta la siguiente línea en tu terminal:</p>
 
-        <p>Busca la sección de <code>"scripts"</code> dentro del <b>package.json</b> y añade un script de desarrollo (esto es una herramienta que reinicia el servidor automáticamente cada vez que se guarda/realiza un cambio). <b>Dependiendo de tu versión de</b> <strong>Node.js</strong>, elige una de estas dos opciones:</p>
+        <p><code>echo node_modules/ > .gitignore</code></p>
+
+        <p>Nota: Si el comando te genera algún error, puedes crear el archivo <b>.gitignore</b> a mano en VS Code y escribir dentro <code>node_modules/</code></p>
+
+        <h4>1.2. Configurar el uso de módulos (ES Modules) en el package.json</h4>
+
+        <p>Abre el archivo <b>package.json</b> que se creó al principio y añade la propiedad <code>"type": "module"</code> dentro del objeto principal del mismo (<span class="underline">en caso de que no se encuentre</span>). Esto te permitirá usar la sintaxis moderna de JavaScript (<code>import/export</code>) en lugar del antiguo <code>require</code>.</p>
+
+        <h4>1.3. Configurar el script de desarrollo (arranque automático)</h4>
+
+        <p>Busca la sección de <code>"scripts"</code> dentro del <b>package.json</b> y añade un script de desarrollo. Esta herramienta reiniciará el servidor automáticamente cada vez que guardes un cambio. <b>Dependiendo de tu versión de</b> <strong>Node.js</strong>, elige una de estas dos opciones:</p>
 
         <ul>
           <li><strong>Opción A (Recomendada - Node.js 18.11 o superior)</strong>: Usamos la bandera nativa <code>--watch</code> sin instalar dependencias externas:</li>
@@ -304,20 +315,26 @@
       </blockquote>
     </details>
 
-    <details id="2b"> <!-- Crear el archivo index.js -->
-      <summary>Paso 2. Crear el archivo index.js</summary>
+    <details id="3b"> <!-- Crear el archivo index.js -->
+      <summary>Paso 3. Crear el archivo index.js</summary>
       <p class="mt-4">Para probar que todo está correcto, crea un archivo llamado <b>index.js</b> y pega el siguiente código en él:</p>
       <blockquote>
-        <script src="https://gist.github.com/contenido-vario/716afa4abfd3ba6ce237822b519fc930.js?file=express-server.js"></script>
+        <script src="https://gist.github.com/contenido-vario/716afa4abfd3ba6ce237822b519fc930.js?file=express-server2.js"></script>
       </blockquote>
       <p>Guarda el archivo (<code>Ctrl S</code>).</p>
       
     </details>
 
-    <details id="3b"> <!-- Probar la configuración -->
-      <summary>Paso 3. Probar la configuración e instalación</summary>
+    <details id="4b"> <!-- Probar la configuración -->
+      <summary>Paso 4. Probar la configuración e instalación</summary>
       <p class="mt-4">Para probar que todo esté correcto, escribe el siguiente código desde la terminal de Windows:</p>
-      <p class="text-center"><code><strong>node index.js</strong></code></p>
+      <p class="text-center"><code><strong>pnpm dev</strong></code></p>
+      <p>Al escribir <code>pnpm dev</code>, le estás diciendo a tu gestor de paquetes: "<i>Busca en mi archivo package.json el script llamado "dev" y ejecuta la instrucción larga que tiene guardada dentro</i>".</p>
+      <ul>
+        <li>Si elegiste la <b>Opción A</b>, <code>pnpm dev</code> ejecutará por detrás: <code>node --watch index.js</code></li>
+        <li>Si elegiste la <b>Opción B</b>, <code>pnpm dev</code> ejecutará por detrás: <code>nodemon index.js</code></li>
+      </ul>
+      <p>Para detener el servidor se presionan las teclas <code>Ctrl C</code> desde la terminal.</p>
     </details>
   </section>
 </body>
