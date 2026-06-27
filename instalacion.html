@@ -34,9 +34,9 @@
       h4 {@apply text-xl text-red-700 my-3 }
       h5 {@apply text-lg text-red-700 my-3 }
 
-      p {
-        @apply mb-1
-      }
+      p { @apply mb-2}
+      b { @apply font-semibold text-zinc-700}
+
 
       button {
         @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
@@ -83,122 +83,184 @@
   <header id="title-block-header">
     <h1 class="font-bold text-2xl text-red-700 mb-4">Instalación de Node.js</h1>
   </header>
-  <h2>Paso 1. Desinstalar el Node.js existente</h2>
-  <h3>Desinstalar el Node.js viejo</h3>
-  <ul>
-    <li>Ve al Panel de Control de Windows > Desinstalar un programa (o ve a Configuración > Aplicaciones > Aplicaciones instaladas).</li>
-    <li>Busca Node.js en la lista.</li>
-    <li>Haz clic derecho y dale a Desinstalar.</li>
-  </ul>
-  <h3>Borrar carpetas fantasma</h3>
-  <ul>
-    <li>Presiona las teclas Windows + R, escribe %appdata% y dale Enter.</li>
-    <li>Si ves una carpeta llamada npm o npm-cache, bórralas sin miedo.</li>
-  </ul>
-  <p>Ahora, estableceremos el entorno de desarrollo. Usaremos cmdr como consola, fnm como gestor de versiones de Node.js y pnpm como gestor de paquetes.</p>
 
-  <h2>Paso 2. Instalar cmder</h2>
+  <details id="1"> <!-- Desinstalar Node.js-->
+    <summary>Paso 1. Desinstalar el Node.js existente</summary>
+    <h3>- Desinstalar el Node.js viejo</h3>
+    <ol>
+      <li>Ve al <code>Panel de Control de Windows > Desinstalar un programa</code><br>(o ve a <code>Configuración > Aplicaciones > Aplicaciones instaladas</code>).</li>
+      <li>Busca <code>Node.js</code> en la lista.</li>
+      <li>Haz clic derecho y selecciona <code>Desinstalar</code>.</li>
+    </ol>
+    <h3>- Borrar carpetas fantasma</h3>
+    <ol>
+      <li>Presiona las teclas <code>Windows R</code>, escribe <code>%appdata%</code> y presiona <code>Enter</code>.</li>
+      <li>Si ves una carpeta llamada <code>npm</code> o <code>npm-cache</code>, bórralas sin miedo.</li>
+    </ol>
+    <p class="mt-8">Una vez realizados los pasos anteriores, crearemos nuestro entorno de desarrollo. Usaremos:</p>
+    <ul>
+      <li><code>Cmdr</code> como consola</li>
+      <li><code>fnm</code> como gestor de versiones de <code>Node.js</code></li>
+      <li><code>pnpm</code> como gestor de paquetes.</li>
+    </ul>
+  </details>
+
+  <details id="2"> <!-- Instalar Cmder-->
+    <summary>Paso 2. Instalar cmder</summary>
   
-  <p>La página oficial  de cmdr es: <a href="https://cmder.app/" target="_blank" rel="noopener noreferrer">https://cmder.app/</a>.</p>
+    <p class="mt-8">La página oficial  de <b>Cmder</b> es: <a href="https://cmder.app/" target="_blank" rel="noopener noreferrer">https://cmder.app/</a>.</p>
 
-  <p>Cmder sirve para mejorar drásticamente la experiencia de usar la línea de comandos en Windows. Su función principal es envolver el símbolo del sistema estándar (cmd.exe), PowerShell o Bash, proporcionando una interfaz moderna y funcional sin necesidad de instalar nada en el sistema operativo. </p>
+    <p><b>Cmder</b> sirve para mejorar drásticamente la experiencia de usar la línea de comandos en Windows. Su función principal es envolver el símbolo del sistema estándar (<code>cmd.exe</code>), <b>PowerShell</b> o <b>Bash</b>, proporcionando una interfaz moderna y funcional sin necesidad de instalar nada en el sistema operativo.</p>
 
-  <p>Es ideal para desarrolladores y administradores de sistemas que necesitan un entorno de terminal consistente que puedan llevar consigo en una memoria USB o usar en máquinas donde no tienen permisos de administrador para instalar software.</p>
+    <p>Es ideal para desarrolladores y administradores de sistemas que necesitan un entorno de terminal consistente que puedan llevar consigo en una memoria USB o usar en máquinas donde no tienen permisos de administrador para instalar software.</p>
 
-  <p>Cmder incorpora Clink, que añade las funcionalidades de Bash (el intérprete de línea de comandos predeterminado en la mayoría de las distribuciones de GNU/Linux y en macOS) a Windows.</p>
+    <p><b>Cmder</b> incorpora <b>Clink</b>, que añade las funcionalidades de <b>Bash</b> (el intérprete de línea de comandos predeterminado en la mayoría de las distribuciones de <b>GNU/Linux</b> y en <b>macOS</b>) a <b>Windows</b>. Esto significa que se pueden usar indistintamente instrucciones de <b>Bash</b> o de <b>PowerShell</b>, para realizar las mismas operaciones.</p>
 
-  <p>La opción más completa y recomendada para reemplazar Cmder en Mac es iTerm2.  Es el estándar de la industria para desarrolladores en macOS y ofrece funcionalidades que Cmder intenta emular en Windows.</p>
+    <p>La opción más completa y recomendada para reemplazar <b>Cmder</b> en <b>Mac</b> es <b>iTerm2</b>. Es el estándar de la industria para desarrolladores en <b>macOS</b> y ofrece funcionalidades que <b>Cmder</b> intenta emular en <b>Windows</b>.</p>
 
-  <p>Cmder no requiere instalación, es portable.</p>
+    <p><b>Cmder</b> no requiere instalación, es portable.</p>
 
-  <ul>
-    <li>Ve a la página oficial de <a href="https://cmder.app/" target="_blank" rel="noopener noreferrer">cmder</a> y descarga la versión Full (que viene con Git integrado).</li>
-    <li>Descomprime el archivo .zip en la carpeta que desees y ejecuta <code>Cmder.exe</code>.</li>
-  </ul>
+    <ol>
+      <li>Ve a la página oficial de <a href="https://cmder.app/" target="_blank" rel="noopener noreferrer">cmder</a> y <b>descarga la versión Full</b> (<span class="text-red-700">que viene con Git integrado</span>).</li>
+      <li>Descomprime el archivo .zip en la carpeta que desees y ejecuta <code>Cmder.exe</code>.</li>
+    </ol>
 
-  <h4>Agregar Cmder al PATH de Windows</h4>
+    <h4>Agregar Cmder al PATH de Windows</h4>
 
-  <p>Si quieres poder abrir Cmder desde cualquier lugar de tu computadora o integrarlo bien con tu sistema, sigue estos pasos:</p>
+    <p>Si quieres poder abrir <code>Cmder</code> desde cualquier lugar de tu computadora e integrarlo bien con tu sistema, sigue estos pasos:</p>
 
-  <ul>
-    <li>Presiona Win + R, escribe sysdm.cpl y pulsa Enter. </li>
-    <li>Ve a la pestaña Opciones avanzadas.</li>
-    <li>Haz clic en el botón "Variables de entorno..." (abajo a la derecha).</li>
-    <li>En la sección "Variables de usuario", busca la que se llama Path y hazle doble clic.</li>
-    <li>Haz clic en "Nuevo" y pega la ruta de la carpeta donde has guardado Cmder (por ejemplo: C:\Cmder).</li>
-    <li>Dale a Aceptar a todo.</li>
-  </ul>
+    <ol>
+      <li>Presiona <code>Win R</code>, escribe <code>sysdm.cpl</code> y pulsa <code>Enter</code>.</li>
+      <li>Ve a la pestaña <b>Opciones avanzadas</b>.</li>
+      <li>Haz clic en el botón <b>Variables de entorno...</b> (abajo a la derecha).</li>
+      <li>En la sección <b>Variables de usuario</b>, busca la que se llama <b>Path</b> y haz doble clic.</li>
+      <li>Haz clic en <b>Nuevo</b> y pega la ruta de la carpeta donde has guardado Cmder (por ejemplo: <code>C:\Cmder</code>).</li>
+      <li>Dale a <b>Aceptar</b> a todo.</li>
+    </ol>
 
-  <p>Ahora podrás ejecutar cmder desde cualquier carpeta de Windows.</p>
+    <p>Ahora podrás ejecutar <b>Cmder</b> desde cualquier carpeta de Windows.</p>
+  </details>
 
-  <h2>Paso 3. Instalamos fnm. Fast Node Manager</h2>
-    
-  <p>fnm. Fast Node Manager, es un gestor de versiones de Node.js moderno, rápido y ligero.  Permite instalar y cambiar entre diferentes versiones de Node.js según los archivos .nvmrc o .node-version del proyecto</p>
+  <details id="3"> <!-- Instalar fnm -->
+    <summary>Paso 3. Instalar fnm. Fast Node Manager</summary>
+      
+    <p class="mt-4"><b>fnm</b> o <b>Fast Node Manager</b>, es un gestor de versiones de <b>Node.js</b> moderno, rápido y ligero.  Permite instalar y cambiar entre diferentes versiones de <b>Node.js</b> según los archivos <code>.nvmrc</code> o <code>.node-version</code> del proyecto</p>
 
-  <ul>
-    <li>
-      <p>Abre cmder, escribe la siguiente instrucción y presiona Enter. Si se te pide aceptar unos términos de Microsoft, escribe Y (de Yes) y presiona nuevamente Enter.</p>
-      <code>winget install Schniz.fnm</code>
-    </li>
-    <li>
-      <p>Como Cmder es una consola especial, tenemos que decirle dónde buscar a fnm. Cierra Cmder y vuélvelo a abrir.</p>      
-    </li>
-    <li>
-      <p>Escribe este comando en Cmder para abrir su archivo de configuración en el bloc de notas:</p>
-      <code>notepad %CMDER_ROOT%\config\user_profile.cmd</code>
-    </li>
-    <li>
-      <p>Ve hasta el final de ese archivo de texto que se abrió, pega esta línea en una nueva línea después del @echo off:</p>
-      <code>@FOR /F "tokens=*" %%z IN ('fnm env --use-on-cd') DO @%%z</code>
-    </li>
-    <li>Guarda el archivo (Ctrl + G o Archivo > Guardar), cierra el bloc de notas y cierra Cmder.</li>
-  </ul>
-  
-  <h2>Paso 4. Instalar la última versión estable de Node.js</h2>
-  <p>Cierra Cmder (si no lo has cerrado) por última vez y vuélvelo a abrir. para integrar completamente fnm. Ya podemos instalar la versión más estable de Node.js escribiendo la siguiente instrucción en  Cmder:</p>
-  <p><code>fnm use --install-if-missing lts-latest</code></p>
+    <ol>
+      <li>
+        <p>Abre <b>Cmder</b>, escribe la siguiente instrucción y presiona <b>Enter</b>.<br>
+        <code>winget install Schniz.fnm</code></p>
+      </li>
+      <li>Si se te pide aceptar unos términos de Microsoft, escribe <b>Y</b> (de Yes) y presiona nuevamente <b>Enter</b>.</li>
+      <li>
+        <p>Como <b>Cmder</b> es una consola especial, tenemos que decirle dónde buscar a <b>fnm</b>.<br>Cierra <b>Cmder</b> y vuélvelo a abrir.</p>      
+      </li>
+      <li>
+        <p>Escribe este comando en Cmder para abrir su archivo de configuración en el bloc de notas:<br>
+        <code>notepad %CMDER_ROOT%\config\user_profile.cmd</code></p>
+      </li>
+      <li>
+        <p>Ve hasta el final de ese archivo de texto que se abrió, pega esta línea en una nueva línea después del <code>@echo off</code>:<br>
+        <code>@FOR /F "tokens=*" %%z IN ('fnm env --use-on-cd') DO @%%z</code></p>
+      </li>
+      <li>Guarda el archivo (<code>Ctrl G</code> o selecciona <b>Archivo > Guardar</b>), cierra el bloc de notas y cierra <b>Cmder</b>.</li>
+    </ol>
+  </details>
 
-  <h2>Paso 5. Instalar pnpm</h2>
-  <p>Ejecuta este comando en tu Cmder:</p>
-  <p><code>npm install -g pnpm</code></p>
-  <p>Cuando termine de instalar escribe <code>pnpm -v</code> para confirmar que la instalación ha sido correcta. Si te devuelve su número de versión, ¡ya tenemos vía libre para comenzar a programar en Node.js</p>
+  <details id="4"> <!-- Instalar la última version LTS de Node-->
+    <summary>Paso 4. Instalar la última versión estable de Node.js</summary>
 
-  <p>Tu entorno de desarrollo está impecable: Cmder como terminal, fnm gestionando Node.js y pnpm como el motor turbo para tus paquetes. Estás usando exactamente el mismo stack de herramientas que un desarrollador profesional avanzado.</p>
+    <p class="mt-4">Cierra <b>Cmder</b> (si no lo has cerrado) por última vez y vuélvelo a abrir para integrar completamente <b>fnm</b>. Ya podemos instalar la versión más estable de <b>Node.js</b> escribiendo la siguiente instrucción en  <b>Cmder</b>:</p>
+    <p><code>fnm use --install-if-missing lts-latest</code></p>
+  </details>
 
-  <h2>Configurar cmder como terminal en VS Code</h2>
+  <details id="5">
+    <summary>Paso 5. Instalar pnpm</summary>
+    <p class="mt-4">Ejecuta este comando en tu <b>Cmder</b>:</p>
+    <p><code>npm install -g pnpm</code></p>
+    <p>Cuando termine de instalar escribe: <code>pnpm -v</code> para confirmar que la instalación ha sido correcta. Si te devuelve su número de versión, ya tenemos vía libre para comenzar a programar en <b>Node.js</b></p>
 
-  <p><b>VS Code necesita que configuremos <code>cmder</code> explícitamente en su propia lista de perfiles</b> para que aparezca en el menú desplegable de la terminal y poderlo seleccionar. Para ello:</p>
+    <p>Tu entorno de desarrollo está listo:</p>
+    <ul>
+      <li><b>Cmder</b> como terminal</li>
+      <li><b>fnm</b> gestionando las versiones de <b>Node.js</b></li>
+      <li><b>pnpm</b> como el motor para gestionar los paquetes (aplicaciones) que uses en tu proyecto.</li>
+    </ul>
+  </details>
 
-  <ol>
-    <li>Presionamos <code>Ctrl ,</code> en VS Code para abrir la <b>Configuración</b>.</li>
-    <li>Buscamos el icono pequeño que parece un <b>archivo con una flecha girando</b> (Open Settings JSON). Clicamos sobre el mismo. Se abrirá un archivo de texto lleno de configuraciones.</li>
-    <li>
-      <p>Al final de todo, antes de la última llave <code>}</code>, pegamos el siguiente  bloque de código (cambiando <code>C:\\Cmder</code> por la ruta exacta donde está guardado tu Cmder:  (las dobles barras diagonales <code>\\</code>, son obligatorias ya que representan un caracter de escape)</p>
-<pre class="block"><code>
-"terminal.integrated.profiles.windows": {
-"Cmder": {
-  "path": "cmd.exe",
-  "args": ["/k", "C:\\Cmder\\vendor\\init.bat"]
-}
-},
-"terminal.integrated.defaultProfile.windows": "Cmder"
-</code></pre>
-    </li>
-    <li>Guardamos el archivo con <code>Ctrl S</code> y abrimos la terminal de VS Code <code>Ctrl Ñ</code></li>
-    <li>Por defecto, VS Code suele abrir la terminal clásica de Windows (PowerShell o CMD). Para usar  <code>Cmder</code> configurado con <code>fnm</code> dentro de VS Code, hacemos clic en la flechita que está al lado del botón + en la esquina de la terminal abajo a la derecha, y selecciona <code>Cmder</code>.</li>
-  </ol>
+  <details id="6"> <!-- Configurar Cmder como terminal -->
+    <summary>Paso 6. Configurar cmder como terminal en VS Code</summary>
 
-  <h4>Cambiar el tamaño de la letra de la terminal</h4>
+    <p class="mt-4"><b>Visual Studio Code necesita que configuremos <code>cmder</code> explícitamente en su propia lista de perfiles</b> para que aparezca en el menú desplegable de la terminal y poderlo seleccionar. Para ello:</p>
 
-  <p>Para cambiar <b>únicamente</b> el tamaño de la letra de la terminal, sigue estos pasos:</p>
-  <ul>
-    <li>Volvemos a presionar <code>Ctrl ,</code> en VS Code para abrir la <b>Configuración</b>.</li>
-    <li>En la barra de búsqueda de arriba, escribimos: <i>Terminal Font Size</i>.</li>
-    <li>Se mostrará una opción que dice <code>Terminal > Integrated: Font Size</code><br>que por defecto viene en <code>14</code>.</li>
-    <li>Escribe el tamaño de texto que te sea cómodo (se actualiza al instante).</li>
-  </ul>
+    <ol>
+      <li>Presionamos <code>Ctrl ,</code> (Ctrl coma) en VSCode para abrir la <b>Configuración</b>.</li>
+      <li>Buscamos el icono pequeño que parece un <b>archivo con una flecha girando</b> (<i>ver title: Open Settings JSON</i>). Clicamos sobre el mismo. Se abrirá un archivo de texto lleno de configuraciones.</li>
+      <li>
+        <p>Al final de todo y <b>antes de la última llave <code>}</code></b>, pegamos el siguiente  bloque de código (cambiando <code>C:\\Cmder</code> por la ruta exacta donde está guardado tu Cmder:  (las dobles barras diagonales <code>\\</code>, son obligatorias y se usan en lugar de la barra simple, ya que representan un caracter de escape).</p>
+        <blockquote>
+          <script src="https://gist.github.com/contenido-vario/716afa4abfd3ba6ce237822b519fc930.js?file=configurar-cmder.json"></script>
+        </blockquote>
 
-  <h4>Extensión recomendada para trabajar con node.js: <code>console ninja</code></h4>
+      </li>
+      <li>Guardamos el archivo con <code>Ctrl S</code> y abrimos la terminal de Visual Studio Code <code>Ctrl Ñ</code></li>
+      <li>Por defecto, Visual Studio Code suele abrir la terminal clásica de Windows (PowerShell o cmd). Para usar  <code>Cmder</code> configurado con <code>fnm</code> dentro de Visual Studio Code, hacemos clic en la flechita que está al lado del botón <b>+</b> en la esquina de la terminal (abajo a la derecha), y seleccionamos <code>Cmder</code>.</li>
+    </ol>
 
+    <h4>Cambiar el tamaño de la letra de la terminal</h4>
+
+    <p class="mt-4">Para cambiar <b>únicamente</b> el tamaño de la letra de la terminal, sigue estos pasos:</p>
+    <ul>
+      <li>Volvemos a presionar <code>Ctrl ,</code> en VS Code para abrir la <b>Configuración</b>.</li>
+      <li>En la barra de búsqueda de arriba, escribimos: <i>Terminal Font Size</i>.</li>
+      <li>Se mostrará una opción que dice <code>Terminal > Integrated: Font Size</code><br>que por defecto viene en <code>14</code>.</li>
+      <li>Escribe el tamaño de texto que te sea cómodo (se actualiza al instante).</li>
+    </ul>
+    <h4>Extensión recomendada para trabajar con node.js: <code>console ninja</code></h4>    
+  </details>
+
+  <details id="7">
+      <summary>Paso 7. Probando nuestra instalación</summary>
+      <p>Para verificar que todo funciona bien, crea un archivo llamado <code>index.js</code>...</p>
+      
+        <blockquote>
+          <script src="https://gist.github.com/contenido-vario/716afa4abfd3ba6ce237822b519fc930.js?file=node-nativo.js"></script>
+        </blockquote>
+  </details>
+
+  <details id="8">
+      <summary>Paso 8. Un paso crucial: Configurar ES Modules</summary>
+
+      <p class="mt-4">Si intentas ejecutar el código anterior tal como está, <b>Node.js</b> te lanzará un error. Por defecto, Node no entiende la sintaxis moderna de <code>import</code>.</p>
+
+      <p>Para solucionarlo, abre tu archivo <code>package.json</code> y añade la propiedad <code>"type": "module"</code>, <span class="underline">en caso de que no se encuentre</span>, al inicio del objeto JSON. Algunas versiones de Node.js ya lo agregan.</p>
+  </details>
+
+  <details id="9">
+      <summary>Paso 9. Automatizando el desarrollo con Nodemon</summary>
+      <p class="mt-4">Por defecto, si haces un cambio en tu código, Node no lo leerá hasta que apagues el servidor en la terminal (<code>Ctrl C</code>) y lo vuelvas a arrancar. Para evitar esto, instalamos <strong>Nodemon</strong>, una herramienta que reinicia el servidor automáticamente cada vez que se guarda/realiza un cambio.</p>
+      <p>Instálalo en tu terminal como dependencia de desarrollo:</p>
+      <pre><code>pnpm add -D nodemon</code></pre>
+      <p>Luego, ve a tu <code>package.json</code> y en la sección de <code>scripts</code> añade tu acceso directo:</p>
+        <blockquote>
+          <script src="https://gist.github.com/contenido-vario/716afa4abfd3ba6ce237822b519fc930.js?file=nodemon.json"></script>
+        </blockquote>
+
+  </details>
+
+  <details id="10">
+      <summary>Paso 10. Simplificar todo con Express</summary>
+      <p class="mt-4">El código anterior con Node puro es demasiado complejo para el día a día. Por eso, en el desarrollo moderno usamos <strong>Express</strong>, un framework que nos permite crear servidores y rutas de forma ridículamente limpia.</p>
+      <p>Instálalo con el siguiente comando:</p>
+      <p><code>pnpm add express</code></p>
+      <p>En estos momentos, tu <code>package.json</code> debería lucir así:</p>
+      <blockquote>
+        <script src="https://gist.github.com/contenido-vario/716afa4abfd3ba6ce237822b519fc930.js?file=package.json"></script>
+      </blockquote>
+      <p class="mt-4">Ahora, borra todo lo que tienes en tu archivo <code>index.js</code> y reemplázalo por este código mucho más limpio:</p>
+      <blockquote>
+        <script src="https://gist.github.com/contenido-vario/716afa4abfd3ba6ce237822b519fc930.js?file=express-server.js"></script>
+      </blockquote>
+  </details>
 </body>
 </html>
