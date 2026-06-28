@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      h2 {@apply font-bold text-2xl my-4 }
+      h3 {@apply font-bold text-xl my-4 }
+      h4 {@apply text-xl text-red-700 my-3 }
+      h5 {@apply text-lg text-red-700 my-3 }
+
+      p { @apply mb-2}
+      b { @apply font-semibold text-zinc-700}
+
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote { @apply mx-8 p-2 text-sm font-mono }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+  <title>Node.js | FrontEnd</title>
+</head>
+
+<body class="container mx-auto w-5/6 pb-10">
+  <header id="title-block-header">
+    <h1 class="font-bold text-3xl text-red-700 my-4">
+      El rol de Node.js en el Frontend</h1>
+  </header>
+
+  <p class="mt-4">En el desarrollo Frontend moderno (con Astro, React, Vue, Angular, Svelte, etc.), la función de <b>Node.js</b> se limita al <b>entorno de desarrollo</b> (ordenador del desarrollador) y a los servidores de despliegue (CI/CD).</p>
+
+  <p>Básicamente, <b>Node.js</b> actúa como un motor de tus herramientas de trabajo. Sirve principalmente para tres cosas:</p>
+  <ol>
+    <li><b>Ejecutar Gestores de Paquetes</b> (usaremos pnpm): Permite instalar, actualizar y administrar librerías de terceros (como <b>Tailwind</b>, <b>Axios</b>, etc).</li>
+    <li><b>Brindar un Servidor de Desarrollo Local</b>: Al usar el comando <code>pnpm dev</code> desde la terminal, Node.js levanta un servidor web local para que puedas ver los cambios en tiempo real mientras programas gracias a herramientas como Vite y su sistema de reemplazo de módulos en caliente (<i>Hot Module Replacement</i>).</li>
+    <li><b>Ejecutar herramientas de construcción (Bundlers/Compiladores)</b>: Herramientas como <b>Vite</b> o <b>esbuild</b> necesitan <b>Node.js</b> para ejecutarse. Son las encargadas de tomar un código moderno (TypeScript, JSX, CSS avanzado) y transformarlo en archivos HTML, JS y CSS simples que cualquier navegador web estándar pueda entender.</li>
+  </ol>
+
+  <h2>pnpm como gestor de paquetes</h2>
+
+  <p class="mt-4">Si <b>Node.js</b> es el entorno de ejecución, <b>pnpm</b> es el administrador.</p>
+  <ul>
+    <li><b>Node.js</b> es como el sistema de producción de una fábrica.</li>
+    <li><b>pnpm</b> es como el gerente que aprovisiona y gestiona los insumos de la fábrica.</li>
+  </ul>
+  
+  <h3>¿Por qué <code>pnpm</code>?</h3>
+
+  <p class="mt-4">En la actualidad (2026) <code>pnpm</code> tiene importantes ventajas sobre otros gestores sobre otros gestores tradicionales como <code>npm</code>  o <code>yarn</code>:</p>
+  <ul>
+    <li><b>Velocidad y Espacio</b> (El almacén global): A diferencia de <b>npm</b>, que duplica los archivos en la carpeta <b>node_modules</b> de cada proyecto, <b>pnpm</b> guarda todos los paquetes en un único lugar de tu disco duro (un almacén global). Así, si 10 proyectos usan <b>React</b>, <b>pnpm</b> solo lo descarga una vez y crea enlaces (<i>hard links</i>) en cada proyecto. Esto ahorra gigabytes de espacio en el disco duro del programador.</li>
+    <li><b>Estructura estricta</b>: <b>pnpm</b> evita que uses librerías que no has declarado explícitamente en el <code>package.json</code>. No declararlas causa un problema común en <b>npm</b> conocido como <i>phantom dependencies</i> (dependencias fantasmas).</li>
+  </ul>
+
+  <h3>Comandos esenciales de <code>pnpm</code></h3>
+  <ul>
+    <li><code>pnpm install</code>: instala todas las dependencias declaradas de un proyecto.</li>
+    <li><code>pnpm add [paquete] </code>:Agrega una nueva librería al proyecto para producción.</li>
+    <li><code>pnpm add -D [paquete] </code>: Agrega una librería exclusiva para desarrollo (compiladores, linters, etc.).</li>
+    <li><code>pnpm dev</code>: arranca un servidor de desarrollo local.</li>
+    <li><code>pnpm dlx</code>: ejecuta binarios temporales sin instalarlos (como <code>npx</code>).</li>
+  </ul>
+
+  <h2 class="mt-8">El stack de FrontEnd</h2>
+  <p class="mt-4">Un stack de frontend es el conjunto de lenguajes, frameworks y herramientas que utilizamos para construir una interfaz web. En este curso iremos escalando de forma guiada para conformar nuestro stack:</p>
+
+  <h3>1. HTML + CSS (TailwindCSS v4) + JS Vanilla</h3>
+
+  <p><b>Tailwind CSS</b> es un framework de CSS de "clases de utilidad" (<i>utility-first</i>). En lugar de ofrecer componentes prefabricados (como botones ya diseñados), proporciona clases de bajo nivel que se aplican directamente en el HTML. Es el estándar de diseño actual.</p>
+
+  <p>En el pasado hemos ido utilizando <b>Tailwind css</b> enlazado desde un cdn. Ahora lo instalaremos directamente en el proyecto para aprovechar todo su potencial.
+
+  <p>Para instalarlo directamente en un proyecto nativo, ejecutamos en la terminal:</p>
+  
+  <p><code>pnpm add -D tailwindcss postcss autoprefixer</code></p>
+  
+  <p>En Tailwind v4 ya no existe el archivo <code>tailwind.config.js</code>. Toda la configuración se realiza directamente mediante CSS nativo.</p>    
+
+  <h4>¿Cómo trabajar con Tailwind v4?</h4>
+  
+  <p>Creamos nuestro archivo CSS principal e importamos el framework en la primera línea. Debajo de ella, podemos extender nuestro diseño usando las nuevas directivas:</p>
+
+  <p>Dentro de éste archivo css, y debajo de la línea <code>@import "tailwindcss";</code>, agregamos las nuevas directivas de Tailwind v4.</p>
+  <ul>
+    <li><code>@theme</code>: Se usa para crear o extender variables del sistema de diseño (colores, fuentes, animaciones).</li>
+    <li><code>@layer base</code>: Para modificar los estilos globales de etiquetas HTML nativas (<code>body</code>, <code>h1</code>, etc.)</li>
+    <li><code>@utility</code>: Reemplaza al antiguo <code>@layer components</code> para crear clases personalizadas y reutilizables.</li>
+  </ul>
+
+  <h4>Instalar plugins a Tailwind v4 (Ejemplo: Tailwind Typography)</h4>
+
+  <p>Un plugin es una herramienta que extiende las capacidades de Tailwind añadiendo nuevas clases automáticas. El mejor ejemplo es <a href="https://tailwindcss-typography.vercel.app/" target="_blank" rel="noopener noreferrer"><code>@tailwindcss/typography</code></a>, un plugin oficial ideal para dar formato automático a bloques de texto largos (como artículos de un blog o archivos Markdown) usando una sola clase llamada <code>prose</code>.</p>
+
+  <p>Para instalarlo en Tailwind v4, seguimos estos dos pasos:</p>
+
+  <ol>
+    <li>
+      <p><b>Instalamos el paquete desde la terminal:</b></p>
+      <p>Descargamos el plugin como una dependencia de desarrollo usando <code>pnpm</code>:</p>
+      <p><code>pnpm add -D @tailwindcss/typography</code></p>
+    </li>
+    <li>
+      <p><b>Lo registrarmos directamente en el archivo CSS</b>:</p>
+      <p>En la versión 4 de tailwind, los plugins se registran directamente en el archivo <code>global.css</code> usando la directiva <code>@plugin</code>:</p>
+      <blockquote>
+        <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=prose.html"></script>
+      </blockquote>
+    </li>
+  </ol>
+
+  <h4>¿Cómo usarlo en el HTML?</h4>
+
+  <p>Una vez importado, puedes envolver cualquier texto nativo dentro de un contenedor con la clase <code>prose</code> (o <code>prose-invert</code> si estás usando un fondo oscuro) y <code>Tailwind</code> se encargará de estilizar los títulos, párrafos, listas y enlaces de forma automática:</p>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=tailwind-plugin.css"></script>
+  </blockquote>
+
+  <h4>Comprobar que todo funciona</h4>
+
+  <p>Crea tu estructura de archivos, enlaza tu archivo CSS procesado en el <code>index.html</code> e inicia el entorno desde la terminal con <code>pnpm dev</code>.</p>
+
+  <h4>Desplegar el proyecto en GitHub (método manual tradicional)</h4>
+  
+  <p><strong>Paso 1:</strong> Compilar tu código en local (Generar el CSS final)</p>
+
+  <p>Antes de subir nada, necesitamos que Node.js y Tailwind generen el archivo CSS real que el navegador puede leer.</p>
+
+  <ul>
+    <li>
+      <p>Abre la terminal en tu editor (Visual Studio Code) y asegúrate de que tu servidor de desarrollo esté apagado (puedes presionar Ctrl + C para apagarlo)</p>
+    </li>
+    <li>
+      <p>Ejecuta el comando de producción:</p>
+      <p><code>pnpm build</code></p>
+    </li>
+    <li>
+      <p>Verás que en tu proyecto se crea (o se actualiza) una carpeta llamada <code>dist/</code> que contiene un archivo llamado <code>output</code>.css. ¡Ese es el CSS optimizado y minificado de Tailwind v4!</p>
+    </li>
+  </ul>
+  <p><strong>Paso 2:</strong> Crear el repositorio en GitHub</p>
+  <p>Crea un nuevo repositorio y configuralo de la siguiente manera. Una vez listo, haz clic en el botón <b>Create Repository</b>:</p>
+  <ul>
+    <li><b>Repository name</b>: dale un nombre corto al repositorio en minúsculas preferiblemente</li>
+    <li><b>Public / Private:</b> Selecciónalo como <b>Public</b> (Obligatorio para que GitHub Pages sea gratis).</li>
+    <li><b>Opciones iniciales</b>: Deja todo lo demás desmarcado (sin README, sin .gitignore).</li>
+  </ul>
+  <p><strong>Paso 3:</strong> Subir los archivos manualmente</p>
+  <p>Busca un enlace que dice: "<b>uploading an existing file</b>" (subir un archivo existente). Se abrirá una zona donde puedes arrastrar tus archivos.</p>
+  <blockquote class="bg-amber-100">
+    <p>⚠️ Vamos a arrastrar solo lo que el navegador necesita y lo que configura nuestro proyecto.</p>
+    <p class="font-bold"><mark>NUNCA</mark> arrastres la carpeta node_modules (pesa demasiado y romperá la subida).</p>
+  </blockquote>
+  <p>Arrastra hacia la ventana de GitHub los siguientes archivos y carpetas:</p>
+  <ul>
+    <li>Tu archivo <b>index.html</b> (debe quedar en la raíz).</li>
+    <li>Tu archivo <b>package.json</b>.</li>
+    <li>Tu carpeta <b>dist</b> (que creamos en el Paso 1, y que contiene el CSS final).</li>
+    <li>Tus archivos de JavaScript si tuvieras (script.js, etc.).</li>
+  </ul>
+  <p><strong>Paso 4:</strong> Encender GitHub Pages</p>
+  <p>Recuerda hacerlo como siempre: <code>Settings > Pages > Deploy from a branch</code> y seleccionar <code>main</code> (o <code>master</code>) donde dice <code>none</code>.</p>
+  <p>Deja la carpeta en <code>/ (root)</code> y haz clic en <code>Save</code> (Guardar).</p>
+
+  <hr class="my-8">
+  
+  <h3>2. HTML - CSS+TailwindCSS - JS Vanilla+Astro.build</h3>
+
+  <p><b>Astro.build</b>: Es considerado el framework 'todo en uno'. Se basa en generar HTML estático y usar <b>Node.js</b> en el servidor solo cuando es estrictamente necesario.</p> 
+
+  <p><b>🎻 Filosofía Astro</b>: Astro actúa como el director de orquesta, mientras que el resto de frameworks o librerías del ecosistema son los músicos.</p>
+
+  <p>Para iniciar un proyecto con este stack, ejecutamos en la terminal:</p>
+
+  <p><code>pnpm create astro@latest</code></p>
+  
+  <p class="italic">El asistente te guiará con unas preguntas (nombre de la carpeta, inicializar Git, etc.). <mark>Cuando te pregunte si deseas instalar las dependencias con <b>pnpm</b>, selecciona <b>Sí</b></mark>.
+  </p>
+  <p>Para integrar Tailwind de forma automática, aprovechamos que Astro es nuestro director de orquesta y ejecutamos:</p>
+  <p><code>pnpm astro add tailwind</code></p>
+
+  <p>Astro descargará <code>tailwindcss</code>, configurará las herramientas y activará la integración de forma limpia en tu archivo <code>astro.config.mjs</code>.</p>
+
+  <p>Durante este proceso, Astro creará un archivo CSS global (normalmente en <code>src/styles/global.css</code>). Al abrirlo, verás la importación de <code>tailwind</code>:</p>
+
+  <p><code>@import "tailwindcss";</code></p>
+
+  <p>Puedes personalizar este archivo a tu gusto. Aquí tienes un ejemplo completo de configuración en la versión 4 de tailwind:</p>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=global.css"></script>
+  </blockquote>
+
+  <p>Para que estos estilos se apliquen en todo el sitio, importamos el archivo CSS en el Layout principal (<code>src/layouts/Layout.astro</code>):</p>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=Layout.astro"></script>
+  </blockquote>
+
+  <p>Ahora, al trabajar en tus páginas (como <code>src/pages/index.astro</code>), tu código HTML quedará sumamente limpio al heredar toda la estructura del Layout:</p>
+
+  <h4>Comprobar que todo funciona</h4>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=index.astro"></script>
+  </blockquote>
+
+  <p>Ejecuta tu servidor de desarrollo desde la terminal: <code>pnpm dev</code></p>
+
+  <h4>Agregar plugins de Tailwind desde Astro</h4>
+  
+  <p>Agregaremos dos plugins en esta oportunidad:</p>
+  <ul>
+    <li>
+      <p><a href="https://github.com/tailwindlabs/tailwindcss-forms" target="_blank" rel="noopener noreferrer"><code>@tailwindcss/forms</code></a>: Tailwind por defecto (Preflight)limpia y aplana los formularios para que no rompan tu diseño, pero toca estilizarlos casi desde cero. Este plugin, modifica automáticamente el estilo de los controles de formulario, permitiéndo cambiar sus colores o bordes usando clases simples de Tailwind de forma mucho más directa:</p>
+      <p>- Todos los inputs, selectores y textareas tienen un borde sutil, un sombreado ligero y esquinas redondeadas muy elegantes por defecto.</p>
+      <p>- Los checkbox y radio buttons se vuelven estilizable de forma nativa.</p>
+    </li>
+    <li>
+      <p><a href="https://github.com/jamiebuilds/tailwindcss-animate" target="_blank" rel="noopener noreferrer"><code>tailwindcss-animate</code></a>: añade decenas de clases listas para usar: desvanecimientos, deslizamientos, zooms y efectos de entrada/salida combinables.</p>
+    </li>
+  </ul>
+
+  <p><strong>Paso 1: </strong>Desde la terminal del proyecto Astro, añadimos los plugins como dependencias de desarrollo (-D) usando <code>pnpm</code>:</p>
+
+  <p><code>pnpm add -D @tailwindcss/forms tailwindcss-animate</code></p>
+
+  <p><strong>Paso 2: </strong> Abrimos nuestro archivo <code>src/styles/global.css</code> y registramos los plugins justo debajo de la importación principal de Tailwind utilizando la directiva <code>@plugin</code>. El bloque superior de <code>global.css</code> quedaría así:</p>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=tailwind-plugins.css"></script>
+  </blockquote>
+
+  <h4>Desplegar el proyecto en Netlify</h4>
+
+  <p><strong>Paso 1. </strong>Compilar el proyecto</p>
+  <p>El proceso es similar al Stack 1.</p>
+  <ul>
+    <li>
+      <p>Abre la terminal en tu editor (Visual Studio Code) y asegúrate de que tu servidor de desarrollo esté apagado (puedes presionar Ctrl + C para apagarlo)</p>
+    </li>
+    <li>
+      <p>Ejecuta el comando de producción:</p>
+      <p><code>pnpm build</code></p>
+    </li>
+    <li>
+      <p>Verás que en tu proyecto se crea (o se actualiza) la carpeta llamada <code>dist/</code> (el código de producción)</p>
+    </li>
+  </ul>
+  <p><strong>Paso 2. </strong>Subir el proyecto a Netlify</p>
+  <p><b>Netlify</b> tiene una herramienta específica que se llama <b>Netlify Drop</b>.</p>
+  <ul>
+    <li>
+      <p>Entra a <a href="app.netlify.com/drop" target="_blank" rel="noopener noreferrer">app.netlify.com/drop</a>.</p>
+      <p class="text-sm">No hace falta crear repositorio. Puedes arrastrar la carpeta <code>dist</code> incluso sin haber iniciado sesión (aunque si no te creas una cuenta, la web caduca en 24 horas. Si te registras con tu email, el proyecto se guarda para siempre).</p>
+    </li>
+    <li>
+      <p>Arrastra la carpeta <code>dist</code>, la plataforma lee el <code>index.html</code> que Astro generó dentro de ella, y te dará da la URL en 3 segundos.</p>
+    </li>
+  </ul>
+
+  <h4>¿Cómo gestionar múltiples proyectos en Netlify?</h4>
+  <p>La primera vez que arrastres la carpeta <code>dist</code>, la plataforma te creará un "<b>Proyecto 1</b>" con una URL aleatoria (que una vez registrado, puedes cambiar por algo como <b>mi-proyecto-astro.netlify.app</b>).</p>
+  <p>Cuando quieras subir tu segundo proyecto:</p>
+  <ul>
+    <li>Entra a tu panel de control (Dashboard) de Netlify. Verás la lista con tu primer proyecto.</li>
+    <li>Haz clic en un botón que dice <b>Add new site</b> (Añadir nuevo sitio) ➔ <b>Deploy manually</b> (Desplegar manualmente).</li>
+    <li>Te volverá a salir un recuadro similar al que usaste para el primer proyecto. Arrastra la nueva carpeta <code>dist</code> de tu segundo proyecto, y tendrás un <b>Proyecto 2</b> con una URL totalmente diferente.</li>
+  </ul>
+
+  <hr class="my-8">
+
+  <h3>3. HTML - CSS+TailwindCSS - JS Vanilla+Astro.build+React</h3>
+
+  <p>Iniciar un proyecto con este stack es similar al stack anterior, solo que para agregar <code>React</code> ejecutamos en la terminal:</p>
+
+  <p><code>pnpm astro add react</code></p>
+
+  <hr class="my-8">
+
+  <h2>¿Donde vamos a partir de hoy?</h2>
+  
+  <p>Iremos estudiando todo lo que podemos hacer con Astro. En el medio, entre proyecto y proyecto, practicaremos con Git (que es diferente a Gtihub)</p>
+
+  <p>En el mundo real, si cambias una sola letra en tu código, tienes que volver a compilar y volver a arrastrar la carpeta en la web. La semana que viene aprenderemos Git para que el servidor de GitHub se conecte tanto con el proyecto local como con Netlify y todo esto se haga solo al guardar.</p>
+
+  <p>Una vez conozcas <b>Astro</b>, pasaremos a <b>React</b> y esta vez haremos el despliegue en otra herramienta que se llama <b>Vercel</b>.</p>
+
+</body>
+</html>
